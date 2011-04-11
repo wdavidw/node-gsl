@@ -34,6 +34,8 @@ var assert = require('assert'),
 	  };
 	  this.nextInt = nextInt;
 	}
+	
+	console.log('Peformance on gaussian random generation with seed.');
 
 	var time = (new Date).getTime();
 	for(var i=0;i<1000000;i++){
