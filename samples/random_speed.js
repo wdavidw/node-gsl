@@ -19,6 +19,8 @@ var assert = require('assert'),
 	  };
 	  this.nextInt = nextInt;
 	}
+	
+	console.log('Peformance on uniform random generation with seed.');
 
 	var time = (new Date).getTime();
 	for(var i=0;i<1000000;i++){
@@ -31,10 +33,27 @@ var assert = require('assert'),
 	var time = (new Date).getTime();
 	for(var i=0;i<1000000;i++){
 		for(var j=0;j<2;j++){
+			gsl.random.get(1978);
+		}
+	}
+	console.log('C++ get fn',(new Date).getTime() - time);
+
+	var time = (new Date).getTime();
+	var random = new gsl.random.Get(1978);
+	for(var i=0;i<1000000;i++){
+		for(var j=0;j<2;j++){
+			random.next();
+		}
+	}
+	console.log('C++ get it',(new Date).getTime() - time);
+
+	var time = (new Date).getTime();
+	for(var i=0;i<1000000;i++){
+		for(var j=0;j<2;j++){
 			gsl.random.uniform(1978);
 		}
 	}
-	console.log('C++ fn',(new Date).getTime() - time);
+	console.log('C++ uniform fn',(new Date).getTime() - time);
 
 	var time = (new Date).getTime();
 	var random = new gsl.random.Uniform(1978);
@@ -43,5 +62,5 @@ var assert = require('assert'),
 			random.next();
 		}
 	}
-	console.log('C++ it',(new Date).getTime() - time);
+	console.log('C++ uniform it',(new Date).getTime() - time);
 
