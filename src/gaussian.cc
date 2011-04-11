@@ -40,15 +40,11 @@ public:
 	static void Init(Handle<Object> target)
 	{
 		HandleScope scope;
-
 		Local<FunctionTemplate> t = FunctionTemplate::New(New);
-
 		s_ct = Persistent<FunctionTemplate>::New(t);
 		s_ct->InstanceTemplate()->SetInternalFieldCount(1);
 		s_ct->SetClassName(String::NewSymbol("Gaussian"));
-
 		NODE_SET_PROTOTYPE_METHOD(s_ct, "next", Next);
-
 		target->Set(String::NewSymbol("RanGaussian"), s_ct->GetFunction());
 	}
 	~Gaussian()
@@ -110,15 +106,11 @@ public:
 	static void Init(Handle<Object> target)
 	{
 		HandleScope scope;
-
 		Local<FunctionTemplate> t = FunctionTemplate::New(New);
-
 		s_ct = Persistent<FunctionTemplate>::New(t);
 		s_ct->InstanceTemplate()->SetInternalFieldCount(1);
 		s_ct->SetClassName(String::NewSymbol("GaussianZiggurat"));
-
 		NODE_SET_PROTOTYPE_METHOD(s_ct, "next", Next);
-
 		target->Set(String::NewSymbol("RanGaussianZiggurat"), s_ct->GetFunction());
 	}
 	~GaussianZiggurat()
@@ -180,15 +172,11 @@ public:
 	static void Init(Handle<Object> target)
 	{
 		HandleScope scope;
-
 		Local<FunctionTemplate> t = FunctionTemplate::New(New);
-
 		s_ct = Persistent<FunctionTemplate>::New(t);
 		s_ct->InstanceTemplate()->SetInternalFieldCount(1);
 		s_ct->SetClassName(String::NewSymbol("GaussianRatioMethod"));
-
 		NODE_SET_PROTOTYPE_METHOD(s_ct, "next", Next);
-
 		target->Set(String::NewSymbol("RanGaussianRatioMethod"), s_ct->GetFunction());
 	}
 	~GaussianRatioMethod()
