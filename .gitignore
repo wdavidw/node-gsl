@@ -1,6 +1,2 @@
 build
-deps/gsl-1.14/config.log
-deps/gsl-1.14/gsl-histogram
-deps/gsl-1.14/gsl-randist
-.*
 !.gitignore
