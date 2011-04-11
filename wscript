@@ -34,6 +34,10 @@ def configure(conf):
 def build(bld):
   obj = bld.new_task_gen('cxx', 'shlib', "node_addon")
   obj.target = 'gsl'
-  obj.source = bld.glob("src/*.cc")
+  obj.source = [
+  	'src/gsl.cc',
+  	#'src/gaussian.cc',
+  	#'src/random.cc'
+  ]
   obj.uselib = ['GSL']
   
