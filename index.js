@@ -3,6 +3,8 @@ var gsl = require('./build/default/gsl');
 
 module.exports = {
 	random: {
+		uniform: gsl.rngUniform,
+		Uniform: gsl.RngUniform,
 		gaussian: gsl.ranGaussian,
 		Gaussian: gsl.RanGaussian,
 		gaussianZiggurat: gsl.ranGaussianZiggurat,

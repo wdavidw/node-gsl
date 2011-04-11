@@ -9,21 +9,19 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <gsl/gsl_randist.h>
+#include "./gsl.h"
 
 using namespace node;
 using namespace v8;
-
-gsl_rng *r_global;
 
 Handle<Value> ranGaussian(const Arguments& args)
 {
 	double deviation;
 	if(args.Length() == 2){
-		gsl_rng_set (r_global, args[0]->Int32Value());
+		gsl_rng_set (r_global, args[0]->Uint32Value());
 		deviation = args[1]->NumberValue();
 	}else if(args.Length() == 1){
-		gsl_rng_set (r_global, args[0]->Int32Value());
+		gsl_rng_set (r_global, args[0]->Uint32Value());
 		deviation = 3;
 	}else{
 		deviation = 3;
@@ -62,9 +60,11 @@ public:
 		HandleScope scope;
 		Gaussian* g = new Gaussian();
 		g->Wrap(args.This());
-		g->seed = args[0]->Int32Value();
 		g->_gsl_rng = gsl_rng_alloc (gsl_rng_default);
-	    gsl_rng_set(g->_gsl_rng, g->seed);
+		if(args.Length() == 1){
+			g->seed = args[0]->Uint32Value();
+		    gsl_rng_set(g->_gsl_rng, g->seed);
+		}
 		return args.This();
 	}
 
@@ -88,10 +88,10 @@ Handle<Value> ranGaussianZiggurat(const Arguments& args)
 {
 	double deviation;
 	if(args.Length() == 2){
-		gsl_rng_set (r_global, args[0]->Int32Value());
+		gsl_rng_set (r_global, args[0]->Uint32Value());
 		deviation = args[1]->NumberValue();
 	}else if(args.Length() == 1){
-		gsl_rng_set (r_global, args[0]->Int32Value());
+		gsl_rng_set (r_global, args[0]->Uint32Value());
 		deviation = 3;
 	}else{
 		deviation = 3;
@@ -130,9 +130,11 @@ public:
 		HandleScope scope;
 		GaussianZiggurat* g = new GaussianZiggurat();
 		g->Wrap(args.This());
-		g->seed = args[0]->Int32Value();
 		g->_gsl_rng = gsl_rng_alloc (gsl_rng_default);
-	    gsl_rng_set(g->_gsl_rng, g->seed);
+		if(args.Length() == 1){
+			g->seed = args[0]->Uint32Value();
+		    gsl_rng_set(g->_gsl_rng, g->seed);
+		}
 		return args.This();
 	}
 
@@ -156,10 +158,10 @@ Handle<Value> ranGaussianRatioMethod(const Arguments& args)
 {
 	double deviation;
 	if(args.Length() == 2){
-		gsl_rng_set (r_global, args[0]->Int32Value());
+		gsl_rng_set (r_global, args[0]->Uint32Value());
 		deviation = args[1]->NumberValue();
 	}else if(args.Length() == 1){
-		gsl_rng_set (r_global, args[0]->Int32Value());
+		gsl_rng_set (r_global, args[0]->Uint32Value());
 		deviation = 3;
 	}else{
 		deviation = 3;
@@ -198,9 +200,11 @@ public:
 		HandleScope scope;
 		GaussianRatioMethod* g = new GaussianRatioMethod();
 		g->Wrap(args.This());
-		g->seed = args[0]->Int32Value();
 		g->_gsl_rng = gsl_rng_alloc (gsl_rng_default);
-	    gsl_rng_set(g->_gsl_rng, g->seed);
+		if(args.Length() == 1){
+			g->seed = args[0]->Uint32Value();
+		    gsl_rng_set(g->_gsl_rng, g->seed);
+		}
 		return args.This();
 	}
 
@@ -224,13 +228,9 @@ Persistent<FunctionTemplate> Gaussian::s_ct;
 Persistent<FunctionTemplate> GaussianZiggurat::s_ct;
 Persistent<FunctionTemplate> GaussianRatioMethod::s_ct;
 extern "C" {
-	static void init (Handle<Object> target)
+	static void gaussian_init(Handle<Object> target)
 	{
 		HandleScope scope;
-		gsl_rng_env_setup ();
-		r_global = gsl_rng_alloc (gsl_rng_default);
-	    int seed = 134;
-	    gsl_rng_set (r_global, seed);
 		target->Set(String::New("ranGaussian"), FunctionTemplate::New(ranGaussian)->GetFunction());
 	    Gaussian::Init(target);
 		target->Set(String::New("ranGaussianZiggurat"), FunctionTemplate::New(ranGaussianZiggurat)->GetFunction());
@@ -238,6 +238,5 @@ extern "C" {
 		target->Set(String::New("ranGaussianRatioMethod"), FunctionTemplate::New(ranGaussianRatioMethod)->GetFunction());
 		GaussianRatioMethod::Init(target);
 	}
-	NODE_MODULE(gsl, init);
 }
 
