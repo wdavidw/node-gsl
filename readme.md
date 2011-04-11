@@ -33,7 +33,7 @@ Seed arguments are always optional and must be provided as unsigned integers.
 
 ### [Sampling](http://www.gnu.org/software/gsl/manual/html_node/Sampling-from-a-random-number-generator.html)
 
--	*random.get()*
+-	*random.get([seed])*
 	Returns a random integer. The minimum and maximum values depend on the algorithm used, but all integers in the range [min,max] are equally likely. The values of min and max can determined using the auxiliary functions `random.min()` and `random.max()`.
 		
 -	*random.Get([seed])*
@@ -47,7 +47,7 @@ Seed arguments are always optional and must be provided as unsigned integers.
 -	*random.max()*
 	Returns the largest value that `random.get()` can return
 
--	*random.uniform()*
+-	*random.uniform([seed])*
 	Returns a double precision floating point number uniformly distributed in the range [0,1). The range includes 0.0 but excludes 1.0.
 		
 -	*random.Uniform([seed])*
@@ -66,7 +66,19 @@ Seed arguments are always optional and must be provided as unsigned integers.
 	*random.Gaussian.next([deviation])*
 	Same as `random.gaussian` but called from a `random.Gaussian` instance. 
 	*random.Gaussian.seed*
-	Returns the seed used by the iterator. 
+	Returns the seed used by the iterator.
+	
+-	*random.gaussianZiggurat([seed], [deviation])*
+	Same as `random.gaussian` but using the alternative Marsaglia-Tsang ziggurat method.
+		
+-	*random.GaussianZiggurat([seed])*
+	Same as `random.Gaussian` but using the alternative Marsaglia-Tsang ziggurat method.
+	
+-	*random.gaussianRatioMethod([seed], [deviation])*
+	Same as `random.gaussian` but using the alternative Kinderman-Monahan-Leva ratio method.
+		
+-	*random.GaussianRatioMethod([seed])*
+	Same as `random.Gaussian` but using the alternative Kinderman-Monahan-Leva ratio method.
 
 Exemple
 
