@@ -98,5 +98,7 @@ Contributors
 ------------
 
 *	David Worms : <https://github.com/wdavidw>
+*	Alzennyr Gomes da Silva : <https://github.com/alzennyr>
+*	Leeley Daio-Pires-Dos-Santos : <https://github.com/ldsantos>
 
 
