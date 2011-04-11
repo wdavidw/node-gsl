@@ -7,7 +7,8 @@ module.exports = {
 		var results = {};
 		for(var i=0;i<100;i++){
 			var random = gsl.random.gaussian();
-			assert.ok( typeof random === 'number' );
+			assert.ok( 'number', typeof random );
+			assert.ok( !isNaN(random) );
 			results[ random ] = true;
 		}
 		assert.eql(100, Object.keys(results).length);
@@ -16,13 +17,15 @@ module.exports = {
 		var results1 = {};
 		for(var i=0;i<100;i++){
 			var random = gsl.random.gaussian(1978);
-			assert.ok( typeof random === 'number' );
+			assert.ok( 'number', typeof random );
+			assert.ok( !isNaN(random) );
 			results1[ random ] = true;
 		}
 		var results2 = {};
 		for(var i=0;i<100;i++){
 			var random = gsl.random.gaussian(1978);
-			assert.ok( typeof random === 'number' );
+			assert.ok( 'number', typeof random );
+			assert.ok( !isNaN(random) );
 			results2[ random ] = true;
 		}
 		assert.eql(1,Object.keys(results1).length);
@@ -33,7 +36,8 @@ module.exports = {
 		var obj = new gsl.random.Gaussian();
 		for(var i=0;i<100;i++){
 			var random = obj.next();
-			assert.ok( typeof random === 'number' );
+			assert.ok( 'number', typeof random );
+			assert.ok( !isNaN(random) );
 			results[ random ] = true;
 		}
 		assert.eql(100, Object.keys(results).length);
@@ -56,7 +60,8 @@ module.exports = {
 		var results = {};
 		for(var i=0;i<100;i++){
 			var random = gsl.random.gaussianZiggurat();
-			assert.ok( typeof random === 'number' );
+			assert.ok( 'number', typeof random );
+			assert.ok( !isNaN(random) );
 			results[ random ] = true;
 		}
 		assert.eql(100, Object.keys(results).length);
@@ -65,13 +70,15 @@ module.exports = {
 		var results1 = {};
 		for(var i=0;i<100;i++){
 			var random = gsl.random.gaussianZiggurat(1978);
-			assert.ok( typeof random === 'number' );
+			assert.ok( 'number', typeof random );
+			assert.ok( !isNaN(random) );
 			results1[ random ] = true;
 		}
 		var results2 = {};
 		for(var i=0;i<100;i++){
 			var random = gsl.random.gaussianZiggurat(1978);
-			assert.ok( typeof random === 'number' );
+			assert.ok( 'number', typeof random );
+			assert.ok( !isNaN(random) );
 			results2[ random ] = true;
 		}
 		assert.eql(1,Object.keys(results1).length);
@@ -82,7 +89,8 @@ module.exports = {
 		var obj = new gsl.random.GaussianZiggurat();
 		for(var i=0;i<100;i++){
 			var random = obj.next();
-			assert.ok( typeof random === 'number' );
+			assert.ok( 'number', typeof random );
+			assert.ok( !isNaN(random) );
 			results[ random ] = true;
 		}
 		assert.eql(100, Object.keys(results).length);
@@ -105,7 +113,8 @@ module.exports = {
 		var results = {};
 		for(var i=0;i<100;i++){
 			var random = gsl.random.gaussianRatioMethod();
-			assert.ok( typeof random === 'number' );
+			assert.ok( 'number', typeof random );
+			assert.ok( !isNaN(random) );
 			results[ random ] = true;
 		}
 		assert.eql(100, Object.keys(results).length);
@@ -114,13 +123,15 @@ module.exports = {
 		var results1 = {};
 		for(var i=0;i<100;i++){
 			var random = gsl.random.gaussianRatioMethod(1978);
-			assert.ok( typeof random === 'number' );
+			assert.ok( 'number', typeof random );
+			assert.ok( !isNaN(random) );
 			results1[ random ] = true;
 		}
 		var results2 = {};
 		for(var i=0;i<100;i++){
 			var random = gsl.random.gaussianRatioMethod(1978);
-			assert.ok( typeof random === 'number' );
+			assert.ok( 'number', typeof random );
+			assert.ok( !isNaN(random) );
 			results2[ random ] = true;
 		}
 		assert.eql(1,Object.keys(results1).length);
@@ -131,7 +142,8 @@ module.exports = {
 		var obj = new gsl.random.GaussianRatioMethod();
 		for(var i=0;i<100;i++){
 			var random = obj.next();
-			assert.ok( typeof random === 'number' );
+			assert.ok( 'number', typeof random );
+			assert.ok( !isNaN(random) );
 			results[ random ] = true;
 		}
 		assert.eql(100, Object.keys(results).length);
