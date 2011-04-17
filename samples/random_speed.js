@@ -39,10 +39,10 @@ var assert = require('assert'),
 	console.log('C++ get fn',(new Date).getTime() - time);
 
 	var time = (new Date).getTime();
-	var random = new gsl.random.Get(1978);
+	var random = new gsl.Random(1978);
 	for(var i=0;i<1000000;i++){
 		for(var j=0;j<2;j++){
-			random.next();
+			random.get();
 		}
 	}
 	console.log('C++ get it',(new Date).getTime() - time);
@@ -56,10 +56,10 @@ var assert = require('assert'),
 	console.log('C++ uniform fn',(new Date).getTime() - time);
 
 	var time = (new Date).getTime();
-	var random = new gsl.random.Uniform(1978);
+	var random = new gsl.Random(1978);
 	for(var i=0;i<1000000;i++){
 		for(var j=0;j<2;j++){
-			random.next();
+			random.uniform();
 		}
 	}
 	console.log('C++ uniform it',(new Date).getTime() - time);
