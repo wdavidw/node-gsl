@@ -1,16 +1,14 @@
 
-	var random = require('gsl').random,
+	var gsl = require('gsl'),
 		seed = 50,
 		deviation = 0.5;
+
+	console.log( gsl.random.gaussian() );
+	console.log( gsl.random.gaussian(seed) );
+	console.log( gsl.random.gaussian(seed, deviation) );
 	
-	console.log( random.gaussian() );
-	console.log( random.gaussian(seed) );
-	console.log( random.gaussian(seed,deviation) );
+	var it1 = new gsl.Random();
+	console.log( it1.gaussian() );
 	
-	var it1 = new random.Gaussian();
-	console.log( it1.next() );
-	it1.seed;
-	
-	var it1 = new random.Gaussian(seed);
-	console.log( it1.next(deviation) );
-	console.log( it1.seed );
+	var it1 = new gsl.Random(seed);
+	console.log( it1.gaussian(deviation) );

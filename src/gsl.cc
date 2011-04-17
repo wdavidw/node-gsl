@@ -16,6 +16,7 @@
 using namespace node;
 using namespace v8;
 
+Persistent<FunctionTemplate> Random::s_ct;
 extern "C" {
 	static void init (Handle<Object> target)
 	{
