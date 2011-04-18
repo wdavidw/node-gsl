@@ -25,10 +25,11 @@ def configure(conf):
   conf.env.append_value("CPPPATH_GSL", abspath("build/default/include/"))
   conf.env.append_value("STATICLIB_GSL",["gsl"])
   # Build gsl
-  buildpath = abspath("build/default")
   srcpath = abspath("deps/gsl-1.14")
-  cmd = "cd \"%s\" && ./configure --disable-shared --prefix=%s && make && make install"
-  if os.system(cmd % (srcpath, buildpath)) != 0:
+  temppath = abspath("build/gsl-1.14")
+  buildpath = abspath("build/default")
+  cmd = "cp -rp %s %s && cd \"%s\" && ./configure --disable-shared --prefix=%s && make && make install"
+  if os.system(cmd % (srcpath, temppath, temppath, buildpath)) != 0:
     conf.fatal("Configuring gsl failed.") 
 
 def build(bld):
