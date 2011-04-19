@@ -1,5 +1,5 @@
 { "name": "gsl"
-, "version": "0.0.2"
+, "version": "0.0.3"
 , "description": "GNU Scientific Library for NodeJS."
 , "author": "David Worms <david@adaltas.com>"
 , "contributors":
