@@ -1,7 +1,12 @@
 
 var gsl = require('gsl'),
 	fs = require('fs'),
+	path = require('path'),
 	spawn = require('child_process').spawn;
+
+	if(!path.existsSync(__dirname+'/poisson_density')){
+		fs.mkdirSync(__dirname+'/poisson_density',0755);
+	}
 	
 	var stream = fs.createWriteStream(__dirname+'/poisson_density/function_mean_1.data');
 	var buf = '';
