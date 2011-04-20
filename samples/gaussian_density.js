@@ -1,48 +1,48 @@
 
-var random = require('gsl').random,
+var gsl = require('gsl'),
 	fs = require('fs'),
 	spawn = require('child_process').spawn;
 	
-	var stream = fs.createWriteStream(__dirname+'/gaussian_density/function_seed_no.data');
+	var stream = fs.createWriteStream(__dirname+'/gaussian_density/function_dev_no.data');
 	var buf = '';
 	for(var i=0;i<10000;i++){
-		buf += random.gaussian();
+		buf += gsl.random.gaussian();
 		buf += '\n';
 	}
 	stream.write(buf);
 	stream.end();
 	
-	var stream = fs.createWriteStream(__dirname+'/gaussian_density/function_seed_10.data');
+	var stream = fs.createWriteStream(__dirname+'/gaussian_density/function_dev_10.data');
 	var buf = '';
 	for(var i=0;i<10000;i++){
-		buf += random.gaussian(10);
+		buf += gsl.random.gaussian(i,10);
 		buf += '\n';
 	}
 	stream.write(buf);
 	stream.end();
 	
-	var stream = fs.createWriteStream(__dirname+'/gaussian_density/object_seed_no.data');
-	var ran = new random.Gaussian();
+	var stream = fs.createWriteStream(__dirname+'/gaussian_density/object_dev_no.data');
+	var ran = new gsl.Random();
 	var buf = '';
 	for(var i=0;i<10000;i++){
-		buf += ran.next();
+		buf += ran.gaussian();
 		buf += '\n';
 	}
 	stream.write(buf);
 	stream.end();
 	
-	var stream = fs.createWriteStream(__dirname+'/gaussian_density/object_seed_10.data');
-	var ran = new random.Gaussian();
+	var stream = fs.createWriteStream(__dirname+'/gaussian_density/object_dev_10.data');
+	var ran = new gsl.Random();
 	var buf = '';
 	for(var i=0;i<10000;i++){
-		buf += ran.next(10);
+		buf += ran.gaussian(10);
 		buf += '\n';
 	}
 	stream.write(buf);
 	stream.end();
 	
 	var cmd = [''];
-	['function_seed_no','function_seed_10','object_seed_no','object_seed_10'].forEach(function(type){
+	['function_dev_no','function_dev_10','object_dev_no','object_dev_10'].forEach(function(type){
 		cmd.push('png(filename="'+__dirname+'/gaussian_density/'+type+'.png", height=295, width=500, bg="white")');
 		cmd.push('data <- read.csv("'+__dirname+'/gaussian_density/'+type+'.data", header=F, sep="\\t")');
 		cmd.push('d <- density(data[,1])');
