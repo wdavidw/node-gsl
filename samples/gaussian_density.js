@@ -3,10 +3,10 @@ var gsl = require('gsl'),
 	fs = require('fs'),
 	spawn = require('child_process').spawn;
 	
-	var stream = fs.createWriteStream(__dirname+'/gaussian_density/function_dev_no.data');
+	var stream = fs.createWriteStream(__dirname+'/gaussian_density/function_dev_1.data');
 	var buf = '';
 	for(var i=0;i<10000;i++){
-		buf += gsl.random.gaussian();
+		buf += gsl.random.gaussian(1);
 		buf += '\n';
 	}
 	stream.write(buf);
@@ -15,17 +15,17 @@ var gsl = require('gsl'),
 	var stream = fs.createWriteStream(__dirname+'/gaussian_density/function_dev_10.data');
 	var buf = '';
 	for(var i=0;i<10000;i++){
-		buf += gsl.random.gaussian(i,10);
+		buf += gsl.random.gaussian(10);
 		buf += '\n';
 	}
 	stream.write(buf);
 	stream.end();
 	
-	var stream = fs.createWriteStream(__dirname+'/gaussian_density/object_dev_no.data');
+	var stream = fs.createWriteStream(__dirname+'/gaussian_density/object_dev_1.data');
 	var ran = new gsl.Random();
 	var buf = '';
 	for(var i=0;i<10000;i++){
-		buf += ran.gaussian();
+		buf += ran.gaussian(1);
 		buf += '\n';
 	}
 	stream.write(buf);
@@ -42,7 +42,7 @@ var gsl = require('gsl'),
 	stream.end();
 	
 	var cmd = [''];
-	['function_dev_no','function_dev_10','object_dev_no','object_dev_10'].forEach(function(type){
+	['function_dev_1','function_dev_10','object_dev_1','object_dev_10'].forEach(function(type){
 		cmd.push('png(filename="'+__dirname+'/gaussian_density/'+type+'.png", height=295, width=500, bg="white")');
 		cmd.push('data <- read.csv("'+__dirname+'/gaussian_density/'+type+'.data", header=F, sep="\\t")');
 		cmd.push('d <- density(data[,1])');

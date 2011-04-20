@@ -56,23 +56,25 @@ Seeds are always optional and must be provided as unsigned integers. Deviations,
 	*Random.uniform([])*
 	Returns a double precision floating point number uniformly distributed in the range [0,1). The range includes 0.0 but excludes 1.0.
 
-### [Gaussian](http://www.gnu.org/software/gsl/manual/html_node/The-Gaussian-Distribution.html)
+### [The Gaussian Distribution](http://www.gnu.org/software/gsl/manual/html_node/The-Gaussian-Distribution.html)
 
--	*random.gaussian([seed], [deviation])*
+-	*random.gaussian([seed], deviation)*
 	*Random.gaussian([deviation])*
-	Returns a Gaussian random float with mean zero. Standart deviation is a float and default to 3.
+	Returns a Gaussian random float with mean zero given a standart deviation as a float.
 	
--	*random.gaussianZiggurat([seed], [deviation])*
-	*Random.gaussianZiggurat([deviation])*
+-	*random.gaussianZiggurat([seed], deviation)*
+	*Random.gaussianZiggurat(deviation)*
 	Same as `random.gaussian` but using the alternative Marsaglia-Tsang ziggurat method.
 	
--	*random.gaussianRatioMethod([seed], [deviation])*
-	*Random.gaussianRatioMethod([deviation])*
+-	*random.gaussianRatioMethod([seed], deviation)*
+	*Random.gaussianRatioMethod(deviation)*
 	Same as `random.gaussian` but using the alternative Kinderman-Monahan-Leva ratio method.
+
+### [The Poisson Distribution](http://www.gnu.org/software/gsl/manual/html_node/The-Poisson-Distribution.html)
 
 -	*random.poisson([seed], mean)*
 	*Random.poisson(mean)*
-	Returns a random integer from the Poisson distribution given a provided mean.
+	Returns a random integer from the Poisson distribution given a provided mean as a float.
 
 Exemple
 
@@ -80,15 +82,12 @@ Exemple
 		seed = 50,
 		deviation = 0.5;
 	
-	console.log( gsl.random.gaussian() );
-	console.log( gsl.random.gaussian(seed) );
+	console.log( gsl.random.gaussian(deviation) );
 	console.log( gsl.random.gaussian(seed, deviation) );
 	
-	var it1 = new gsl.Random();
-	console.log( it1.gaussian() );
-	
-	var it1 = new gsl.Random(seed);
-	console.log( it1.gaussian(deviation) );
+	var iterator = new gsl.Random(seed);
+	console.log( iterator.gaussian(deviation) );
+	console.log( iterator.gaussian(deviation) );
 
 Running the tests
 -----------------

@@ -18,6 +18,8 @@ Handle<Value> rngGet(const Arguments& args)
 {
 	if(args.Length() == 1){
 		gsl_rng_set (r_global, args[0]->Uint32Value());
+	}else if(args.Length() != 0){
+		return ThrowException(Exception::TypeError(String::New("Invalid argument")));
 	}
 	unsigned int val = gsl_rng_get(r_global);
 	return Int32::NewFromUnsigned(val);
@@ -25,12 +27,18 @@ Handle<Value> rngGet(const Arguments& args)
 
 Handle<Value> rngMin(const Arguments& args)
 {
+	if(args.Length() != 0){
+		return ThrowException(Exception::TypeError(String::New("Invalid argument")));
+	}
 	double val = gsl_rng_min(r_global);
 	return Int32::NewFromUnsigned(val);
 }
 
 Handle<Value> rngMax(const Arguments& args)
 {
+	if(args.Length() != 0){
+		return ThrowException(Exception::TypeError(String::New("Invalid argument")));
+	}
 	double val = gsl_rng_max(r_global);
 	return Int32::NewFromUnsigned(val);
 }
@@ -39,6 +47,8 @@ Handle<Value> rngUniform(const Arguments& args)
 {
 	if(args.Length() == 1){
 		gsl_rng_set (r_global, args[0]->Uint32Value());
+	}else if(args.Length() != 0){
+		return ThrowException(Exception::TypeError(String::New("Invalid argument")));
 	}
 	double val = gsl_rng_uniform(r_global);
 	return Number::New(val);
@@ -100,6 +110,9 @@ public:
 	static Handle<Value> Get(const Arguments& args)
 	{
 		HandleScope scope;
+		if(args.Length() != 0){
+			return ThrowException(Exception::TypeError(String::New("Invalid argument")));
+		}
 		Random* g = ObjectWrap::Unwrap<Random>(args.Holder());
 		unsigned int val = gsl_rng_get(g->_gsl_rng);
 		return scope.Close(Int32::NewFromUnsigned(val));
@@ -107,6 +120,9 @@ public:
 	static Handle<Value> Uniform(const Arguments& args)
 	{
 		HandleScope scope;
+		if(args.Length() != 0){
+			return ThrowException(Exception::TypeError(String::New("Invalid argument")));
+		}
 		Random* g = ObjectWrap::Unwrap<Random>(args.Holder());
 		double val = gsl_rng_uniform(g->_gsl_rng);
 		return scope.Close(Number::New(val));
@@ -116,10 +132,10 @@ public:
 		HandleScope scope;
 		Random* g = ObjectWrap::Unwrap<Random>(args.Holder());
 	    double deviation;
-		if(args.Length() == 0){
-			 deviation = 3;
-		}else{
+		if(args.Length() == 1){
 			 deviation = args[0]->NumberValue();
+		}else{
+			return ThrowException(Exception::TypeError(String::New("Invalid argument")));
 		}
 		double val = gsl_ran_gaussian(g->_gsl_rng, deviation);
 		return scope.Close(Number::New(val));
@@ -129,10 +145,10 @@ public:
 		HandleScope scope;
 		Random* g = ObjectWrap::Unwrap<Random>(args.Holder());
 	    double deviation;
-		if(args.Length() == 0){
-			 deviation = 3;
-		}else{
+		if(args.Length() == 1){
 			 deviation = args[0]->NumberValue();
+		}else{
+			return ThrowException(Exception::TypeError(String::New("Invalid argument")));
 		}
 		double val = gsl_ran_gaussian_ziggurat(g->_gsl_rng, deviation);
 		return scope.Close(Number::New(val));
@@ -142,10 +158,10 @@ public:
 		HandleScope scope;
 		Random* g = ObjectWrap::Unwrap<Random>(args.Holder());
 	    double deviation;
-		if(args.Length() == 0){
-			 deviation = 3;
-		}else{
+		if(args.Length() == 1){
 			 deviation = args[0]->NumberValue();
+		}else{
+			return ThrowException(Exception::TypeError(String::New("Invalid argument")));
 		}
 		double val = gsl_ran_gaussian_ratio_method(g->_gsl_rng, deviation);
 		return scope.Close(Number::New(val));
@@ -154,10 +170,12 @@ public:
 	{
 		HandleScope scope;
 		Random* g = ObjectWrap::Unwrap<Random>(args.Holder());
-		if(args.Length() != 1){
+		double mean;
+		if(args.Length() == 1){
+			mean = args[0]->NumberValue();
+		}else{
 			return ThrowException(Exception::TypeError(String::New("Invalid argument")));
 		}
-	    double mean = args[0]->NumberValue();
 		double val = gsl_ran_poisson(g->_gsl_rng, mean);
 		return scope.Close(Number::New(val));
 	}

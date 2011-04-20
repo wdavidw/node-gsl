@@ -48,7 +48,7 @@ var assert = require('assert'),
 	var time = (new Date).getTime();
 	for(var i=0;i<1000000;i++){
 		for(var j=0;j<2;j++){
-			gsl.random.gaussian(1978);
+			gsl.random.gaussian(1978,1);
 		}
 	}
 	console.log('C++ fn',(new Date).getTime() - time);
@@ -57,7 +57,7 @@ var assert = require('assert'),
 	var random = new gsl.Random(1978);
 	for(var i=0;i<1000000;i++){
 		for(var j=0;j<2;j++){
-			random.gaussian();
+			random.gaussian(1);
 		}
 	}
 	console.log('C++ it',(new Date).getTime() - time);
@@ -65,7 +65,7 @@ var assert = require('assert'),
 	var time = (new Date).getTime();
 	for(var i=0;i<1000000;i++){
 		for(var j=0;j<2;j++){
-			gsl.random.gaussianZiggurat(1978);
+			gsl.random.gaussianZiggurat(1978,1);
 		}
 	}
 	console.log('C++ fn Ziggurat',(new Date).getTime() - time);
@@ -74,7 +74,7 @@ var assert = require('assert'),
 	var random = new gsl.Random(1978);
 	for(var i=0;i<1000000;i++){
 		for(var j=0;j<2;j++){
-			random.gaussianZiggurat();
+			random.gaussianZiggurat(1);
 		}
 	}
 	console.log('C++ it Ziggurat',(new Date).getTime() - time);
@@ -82,7 +82,7 @@ var assert = require('assert'),
 	var time = (new Date).getTime();
 	for(var i=0;i<1000000;i++){
 		for(var j=0;j<2;j++){
-			gsl.random.gaussianRatioMethod(1978);
+			gsl.random.gaussianRatioMethod(1978,1);
 		}
 	}
 	console.log('C++ fn RatioMethod',(new Date).getTime() - time);
@@ -91,7 +91,7 @@ var assert = require('assert'),
 	var random = new gsl.Random(1978);
 	for(var i=0;i<1000000;i++){
 		for(var j=0;j<2;j++){
-			random.gaussianRatioMethod();
+			random.gaussianRatioMethod(1);
 		}
 	}
 	console.log('C++ it RatioMethod',(new Date).getTime() - time);

@@ -21,10 +21,9 @@ Handle<Value> ranGaussian(const Arguments& args)
 		gsl_rng_set (r_global, args[0]->Uint32Value());
 		deviation = args[1]->NumberValue();
 	}else if(args.Length() == 1){
-		gsl_rng_set (r_global, args[0]->Uint32Value());
-		deviation = 3;
+		deviation = args[0]->NumberValue();
 	}else{
-		deviation = 3;
+		return ThrowException(Exception::TypeError(String::New("Invalid argument")));
 	}
 	double val = gsl_ran_gaussian(r_global, deviation);
 	return Number::New(val);
@@ -37,10 +36,9 @@ Handle<Value> ranGaussianZiggurat(const Arguments& args)
 		gsl_rng_set (r_global, args[0]->Uint32Value());
 		deviation = args[1]->NumberValue();
 	}else if(args.Length() == 1){
-		gsl_rng_set (r_global, args[0]->Uint32Value());
-		deviation = 3;
+		deviation = args[0]->NumberValue();
 	}else{
-		deviation = 3;
+		return ThrowException(Exception::TypeError(String::New("Invalid argument")));
 	}
 	double val = gsl_ran_gaussian_ziggurat(r_global, deviation);
 	return Number::New(val);
@@ -53,10 +51,9 @@ Handle<Value> ranGaussianRatioMethod(const Arguments& args)
 		gsl_rng_set (r_global, args[0]->Uint32Value());
 		deviation = args[1]->NumberValue();
 	}else if(args.Length() == 1){
-		gsl_rng_set (r_global, args[0]->Uint32Value());
-		deviation = 3;
+		deviation = args[0]->NumberValue();
 	}else{
-		deviation = 3;
+		return ThrowException(Exception::TypeError(String::New("Invalid argument")));
 	}
 	double val = gsl_ran_gaussian_ratio_method(r_global, deviation);
 	return Number::New(val);
