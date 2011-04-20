@@ -10,6 +10,7 @@ module.exports = {
 		uniform: gsl.rngUniform,
 		gaussian: gsl.ranGaussian,
 		gaussianZiggurat: gsl.ranGaussianZiggurat,
-		gaussianRatioMethod: gsl.ranGaussianRatioMethod
+		gaussianRatioMethod: gsl.ranGaussianRatioMethod,
+		poisson: gsl.ranPoisson,
 	}
 };

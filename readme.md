@@ -70,6 +70,10 @@ Seeds are always optional and must be provided as unsigned integers. Deviations,
 	*Random.gaussianRatioMethod([deviation])*
 	Same as `random.gaussian` but using the alternative Kinderman-Monahan-Leva ratio method.
 
+-	*random.poisson([seed], mean)*
+	*Random.poisson(mean)*
+	Returns a random integer from the Poisson distribution given a provided mean.
+
 Exemple
 
 	var gsl = require('gsl'),

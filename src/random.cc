@@ -44,6 +44,21 @@ Handle<Value> rngUniform(const Arguments& args)
 	return Number::New(val);
 }
 
+Handle<Value> ranPoisson(const Arguments& args)
+{
+	double mean;
+	if(args.Length() == 2){
+		gsl_rng_set (r_global, args[0]->Uint32Value());
+		mean = args[1]->NumberValue();
+	}else if(args.Length() == 1){
+		mean = args[0]->NumberValue();
+	}else{
+		return ThrowException(Exception::TypeError(String::New("Invalid argument")));
+	}
+	double val = gsl_ran_poisson(r_global, mean);
+	return Number::New(val);
+}
+
 class Random: public ObjectWrap
 {
 private:
@@ -63,6 +78,7 @@ public:
 		NODE_SET_PROTOTYPE_METHOD(s_ct, "gaussian", Gaussian);
 		NODE_SET_PROTOTYPE_METHOD(s_ct, "gaussianZiggurat", GaussianZiggurat);
 		NODE_SET_PROTOTYPE_METHOD(s_ct, "gaussianRatioMethod", GaussianRatioMethod);
+		NODE_SET_PROTOTYPE_METHOD(s_ct, "poisson", Poisson);
 		target->Set(String::NewSymbol("Random"), s_ct->GetFunction());
 	}
 	~Random()
@@ -134,6 +150,17 @@ public:
 		double val = gsl_ran_gaussian_ratio_method(g->_gsl_rng, deviation);
 		return scope.Close(Number::New(val));
 	}
+	static Handle<Value> Poisson(const Arguments& args)
+	{
+		HandleScope scope;
+		Random* g = ObjectWrap::Unwrap<Random>(args.Holder());
+		if(args.Length() != 1){
+			return ThrowException(Exception::TypeError(String::New("Invalid argument")));
+		}
+	    double mean = args[0]->NumberValue();
+		double val = gsl_ran_poisson(g->_gsl_rng, mean);
+		return scope.Close(Number::New(val));
+	}
 };
 
 extern "C" {
@@ -144,6 +171,7 @@ extern "C" {
 		target->Set(String::New("rngMin"), FunctionTemplate::New(rngMin)->GetFunction());
 		target->Set(String::New("rngMax"), FunctionTemplate::New(rngMax)->GetFunction());
 		target->Set(String::New("rngUniform"), FunctionTemplate::New(rngUniform)->GetFunction());
+		target->Set(String::New("ranPoisson"), FunctionTemplate::New(ranPoisson)->GetFunction());
 		Random::Init(target);
 	}
 }
