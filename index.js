@@ -11,6 +11,6 @@ module.exports = {
 		gaussian: gsl.ranGaussian,
 		gaussianZiggurat: gsl.ranGaussianZiggurat,
 		gaussianRatioMethod: gsl.ranGaussianRatioMethod,
-		poisson: gsl.ranPoisson,
+		poisson: gsl.ranPoisson
 	}
 };

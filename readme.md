@@ -31,9 +31,9 @@ Random API
 
 The library takes two forms, functions and iterator objects. Both respect the same names with different conventions. For exemple, obtaining an uniform random name can be done as `random.get()` as well as `(new Random).get()`. If you wished to provide a seed, then you'll respectivelly call `random.get(seed)` and `(new Random(seed)).get()`
 
-Using an iterator objects make sense when performance is in consideration, specially when using seeds.
+Using an iterator objects make sense when using seeds and when performance is a concern.
 
-Seeds are always optional and must be provided as unsigned integers. Deviations, used by gaussian functions, are float and default to 3.
+Seeds are always optional and must be provided as unsigned integers. Deviations, used by gaussian functions, are float.
 
 -	*Random([seed])*
 	Construct a new iterator, seel below for available random methods.
