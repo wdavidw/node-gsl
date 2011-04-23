@@ -69,6 +69,51 @@ Handle<Value> ranPoisson(const Arguments& args)
 	return Number::New(val);
 }
 
+Handle<Value> ranGaussian(const Arguments& args)
+{
+	double deviation;
+	if(args.Length() == 2){
+		gsl_rng_set (r_global, args[0]->Uint32Value());
+		deviation = args[1]->NumberValue();
+	}else if(args.Length() == 1){
+		deviation = args[0]->NumberValue();
+	}else{
+		return ThrowException(Exception::TypeError(String::New("Invalid argument")));
+	}
+	double val = gsl_ran_gaussian(r_global, deviation);
+	return Number::New(val);
+}
+
+Handle<Value> ranGaussianZiggurat(const Arguments& args)
+{
+	double deviation;
+	if(args.Length() == 2){
+		gsl_rng_set (r_global, args[0]->Uint32Value());
+		deviation = args[1]->NumberValue();
+	}else if(args.Length() == 1){
+		deviation = args[0]->NumberValue();
+	}else{
+		return ThrowException(Exception::TypeError(String::New("Invalid argument")));
+	}
+	double val = gsl_ran_gaussian_ziggurat(r_global, deviation);
+	return Number::New(val);
+}
+
+Handle<Value> ranGaussianRatioMethod(const Arguments& args)
+{
+	double deviation;
+	if(args.Length() == 2){
+		gsl_rng_set (r_global, args[0]->Uint32Value());
+		deviation = args[1]->NumberValue();
+	}else if(args.Length() == 1){
+		deviation = args[0]->NumberValue();
+	}else{
+		return ThrowException(Exception::TypeError(String::New("Invalid argument")));
+	}
+	double val = gsl_ran_gaussian_ratio_method(r_global, deviation);
+	return Number::New(val);
+}
+
 class Random: public ObjectWrap
 {
 private:
@@ -190,6 +235,9 @@ extern "C" {
 		target->Set(String::New("rngMax"), FunctionTemplate::New(rngMax)->GetFunction());
 		target->Set(String::New("rngUniform"), FunctionTemplate::New(rngUniform)->GetFunction());
 		target->Set(String::New("ranPoisson"), FunctionTemplate::New(ranPoisson)->GetFunction());
+		target->Set(String::New("ranGaussian"), FunctionTemplate::New(ranGaussian)->GetFunction());
+		target->Set(String::New("ranGaussianZiggurat"), FunctionTemplate::New(ranGaussianZiggurat)->GetFunction());
+		target->Set(String::New("ranGaussianRatioMethod"), FunctionTemplate::New(ranGaussianRatioMethod)->GetFunction());
 		Random::Init(target);
 	}
 }

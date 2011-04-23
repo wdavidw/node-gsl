@@ -12,5 +12,8 @@ module.exports = {
 		gaussianZiggurat: gsl.ranGaussianZiggurat,
 		gaussianRatioMethod: gsl.ranGaussianRatioMethod,
 		poisson: gsl.ranPoisson
+	},
+	statistics: {
+		sd: gsl.statisticsSd
 	}
 };

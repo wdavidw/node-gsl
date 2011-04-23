@@ -8,6 +8,7 @@
 #define __RAN_R_GLOBAL
 
 #include <gsl/gsl_randist.h>
+#include <gsl/gsl_statistics.h>
 gsl_rng *r_global;
 
 #endif // RAN_R_GLOBAL

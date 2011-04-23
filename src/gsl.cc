@@ -10,7 +10,7 @@
 #include <string.h>
 
 #include "./gsl.h"
-#include "./gaussian.cc"
+#include "./statistics.cc"
 #include "./random.cc"
 
 using namespace node;
