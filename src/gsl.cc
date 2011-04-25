@@ -22,8 +22,8 @@ extern "C" {
 	{
 		gsl_rng_env_setup ();
 		r_global = gsl_rng_alloc (gsl_rng_default);
-		gaussian_init(target);
 		random_init(target);
+		statistics_init(target);
 	}
 	NODE_MODULE(gsl, init);
 }

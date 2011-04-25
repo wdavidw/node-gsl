@@ -35,48 +35,42 @@ Using an iterator objects make sense when using seeds and when performance is a 
 
 Seeds are always optional and must be provided as unsigned integers. Deviations, used by gaussian functions, are float.
 
--	*Random([seed])*
+-	*gsl.Random([seed])*
 	Construct a new iterator, seel below for available random methods.
-
-### [Sampling](http://www.gnu.org/software/gsl/manual/html_node/Sampling-from-a-random-number-generator.html)
-
--	*random.get([seed])*
-	*Random.get()*
+	
+-	*gsl.random.get([seed])*
+	*gsl.Random.get()*
 	Returns a random integer. The minimum and maximum values depend on the algorithm used, but all integers in the range [min,max] are equally likely. The values of min and max can determined using the auxiliary functions `random.min()` and `random.max()`.
 	
--	*random.min()*
-	*Random.min()*
-	Returns the smallest value that `random.get()` can return
+-	*gsl.random.min()*
+	*gsl.Random.min()*
+	Returns the smallest value that `random.get()` can return.
 	
--	*random.max()*
-	*Random.max()*
-	Returns the largest value that `random.get()` can return
+-	*gsl.random.max()*
+	*gsl.Random.max()*
+	Returns the largest value that `random.get()` can return.
 	
--	*random.uniform([seed])*
-	*Random.uniform([])*
+-	*gsl.random.uniform([seed])*
+	*gsl.Random.uniform([])*
 	Returns a double precision floating point number uniformly distributed in the range [0,1). The range includes 0.0 but excludes 1.0.
-
-### [The Gaussian Distribution](http://www.gnu.org/software/gsl/manual/html_node/The-Gaussian-Distribution.html)
-
--	*random.gaussian([seed], deviation)*
-	*Random.gaussian([deviation])*
+	
+-	*gsl.random.gaussian([seed], deviation)* 
+	*gsl.Random.gaussian([deviation])*
 	Returns a Gaussian random float with mean zero given a standart deviation as a float.
 	
--	*random.gaussianZiggurat([seed], deviation)*
-	*Random.gaussianZiggurat(deviation)*
+-	*gsl.random.gaussianZiggurat([seed], deviation)* 
+	*gsl.Random.gaussianZiggurat(deviation)*
 	Same as `random.gaussian` but using the alternative Marsaglia-Tsang ziggurat method.
 	
--	*random.gaussianRatioMethod([seed], deviation)*
-	*Random.gaussianRatioMethod(deviation)*
+-	*gsl.random.gaussianRatioMethod([seed], deviation)* 
+	*gsl.Random.gaussianRatioMethod(deviation)*
 	Same as `random.gaussian` but using the alternative Kinderman-Monahan-Leva ratio method.
-
-### [The Poisson Distribution](http://www.gnu.org/software/gsl/manual/html_node/The-Poisson-Distribution.html)
-
--	*random.poisson([seed], mean)*
-	*Random.poisson(mean)*
+	
+-	*gsl.random.poisson([seed], mean)* 
+	*gsl.Random.poisson(mean)*
 	Returns a random integer from the Poisson distribution given a provided mean as a float.
 
-Exemple
+### Exemple
 
 	var gsl = require('gsl'),
 		seed = 50,
@@ -88,6 +82,26 @@ Exemple
 	var iterator = new gsl.Random(seed);
 	console.log( iterator.gaussian(deviation) );
 	console.log( iterator.gaussian(deviation) );
+
+### Resources
+
+*	[Sampling](http://www.gnu.org/software/gsl/manual/html_node/Sampling-from-a-random-number-generator.html)
+*	[The Gaussian Distribution](http://www.gnu.org/software/gsl/manual/html_node/The-Gaussian-Distribution.html)
+*	[The Poisson Distribution](http://www.gnu.org/software/gsl/manual/html_node/The-Poisson-Distribution.html)
+
+Statistics API
+--------------
+
+Data are expected to be arrays of float numbers. Means are float numbers.
+
+-	*gsl.statistics.mean(data)*
+	Returns the arithmetic mean of data.
+	
+-	*gsl.statistics.variance(data, [mean])*
+	Returns the estimated, or sample, variance of data.
+	
+-	*gsl.statistics.variance(data, [mean])*
+	Returns the standard deviation defined as the square root of the variance defined above.
 
 Running the tests
 -----------------

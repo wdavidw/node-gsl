@@ -13,23 +13,79 @@
 
 using namespace node;
 using namespace v8;
+// Note about stride http://awhan.wordpress.com/2009/06/17/gsl-vector-stride/
+
+Handle<Value> statisticsMean(const Arguments& args){
+	if(args.Length() != 1){
+		return ThrowException(Exception::TypeError(String::New("Invalid argument")));
+	}
+    Local<Array> data_arg = Local<Array>::Cast(args[0]);
+    double datas [data_arg->Length()];
+    for(int i=0; i<data_arg->Length(); i++){
+    	datas[i] = data_arg->Get(i)->NumberValue();
+    }
+    double val = gsl_stats_mean(datas, 1, data_arg->Length());
+    return Number::New(val);
+}
+
+Handle<Value> statisticsVariance(const Arguments& args){
+	Local<Array> data_arg;
+	bool useMean = false;
+	double mean;
+	if(args.Length() == 2){
+		data_arg = Local<Array>::Cast(args[0]);
+		mean = args[1]->NumberValue();
+		useMean = true;
+	}else if(args.Length() == 1){
+		data_arg = Local<Array>::Cast(args[0]);
+	}else{
+		return ThrowException(Exception::TypeError(String::New("Invalid argument")));
+	}
+    double datas [data_arg->Length()];
+    for(int i=0; i<data_arg->Length(); i++){
+    	datas[i] = data_arg->Get(i)->NumberValue();
+    }
+    double val;
+    if(useMean){
+    	val = gsl_stats_variance_m(datas, 1, data_arg->Length(), mean);
+    }else{
+        val = gsl_stats_variance(datas, 1, data_arg->Length());
+    }
+    return Number::New(val);
+}
 
 Handle<Value> statisticsSd(const Arguments& args){
-    Local<Array> data_o = Local<Array>::Cast(args[0]);
-    double datas [data_o->Length()];
-    for(int i=0; i<data_o->Length(); i++){
-    	datas[i] = data_o->Get(i)->NumberValue();
+	Local<Array> data_arg;
+	bool useMean = false;
+	double mean;
+	if(args.Length() == 2){
+		data_arg = Local<Array>::Cast(args[0]);
+		mean = args[1]->NumberValue();
+		useMean = true;
+	}else if(args.Length() == 1){
+		data_arg = Local<Array>::Cast(args[0]);
+	}else{
+		return ThrowException(Exception::TypeError(String::New("Invalid argument")));
+	}
+    double datas [data_arg->Length()];
+    for(int i=0; i<data_arg->Length(); i++){
+    	datas[i] = data_arg->Get(i)->NumberValue();
     }
-    const size_t stride = args[1]->Uint32Value() ;
-    const size_t n = args[2]->Uint32Value() ;
-    double val = gsl_stats_sd (datas, stride, n);
+    double val;
+    if(useMean){
+    	val = gsl_stats_sd_m(datas, 1, data_arg->Length(), mean);
+    }else{
+        val = gsl_stats_sd(datas, 1, data_arg->Length());
+    }
     return Number::New(val);
 }
 
 extern "C" {
-	static void gaussian_init(Handle<Object> target)
+	static void statistics_init(Handle<Object> target)
 	{
 		HandleScope scope;
+		target->Set(String::New("statisticsMean"),FunctionTemplate::New(statisticsMean)->GetFunction());
+		target->Set(String::New("statisticsVariance"),FunctionTemplate::New(statisticsVariance)->GetFunction());
 		target->Set(String::New("statisticsSd"),FunctionTemplate::New(statisticsSd)->GetFunction());
 	}
 }

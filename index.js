@@ -14,6 +14,8 @@ module.exports = {
 		poisson: gsl.ranPoisson
 	},
 	statistics: {
+		mean: gsl.statisticsMean,
+		variance: gsl.statisticsVariance,
 		sd: gsl.statisticsSd
 	}
 };

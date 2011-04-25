@@ -19,4 +19,4 @@ var data = [ -213, -564,  -35,  -15,  141,  115, -420, -360,  203, -338, -431,  
             -190,  172, -424, -385,  198, -218, -536,   96 ];
 
 
-console.log('-> '+gsl.statistics.sd(data,1,200));
+console.log('-> ', gsl.statistics.sd(data));
