@@ -12,7 +12,7 @@
 
 This project provide a binding between the GNU Scientific Library (GSL) and NodeJS.
 
-At the moment, only random functions are integrated.
+At the moment, the library is partially integrated.
 
 Installing
 ----------
