@@ -16,6 +16,9 @@ module.exports = {
 	statistics: {
 		mean: gsl.statisticsMean,
 		variance: gsl.statisticsVariance,
-		sd: gsl.statisticsSd
+		sd: gsl.statisticsSd,
+		tss: gsl.statisticsTss,
+		varianceWithFixedMean: gsl.statisticsVarianceWithFixedMean,
+		sdWithFixedMean: gsl.statisticsSdWithFixedMean,
 	}
 };
