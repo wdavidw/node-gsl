@@ -68,9 +68,9 @@ Seeds are always optional and must be provided as unsigned integers. Deviations,
 	
 	Same as `random.gaussian` but using the alternative Kinderman-Monahan-Leva ratio method.
 	
--	*gsl.random.poisson([seed], mean)*
+-	*gsl.random.poisson([seed], mean)*.
 	
-	*gsl.Random.poisson(mean)*
+	*gsl.Random.poisson(mean)*.
 	
 	Returns a random integer from the Poisson distribution given a provided mean as a float.
 
