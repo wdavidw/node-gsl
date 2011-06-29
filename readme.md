@@ -59,13 +59,13 @@ Seeds are always optional and must be provided as unsigned integers. Deviations,
 	
 -	*gsl.random.uniform([seed])*
 	
-	*gsl.Random.uniform([])*
+	*gsl.Random.uniform()*
 	
 	Returns a double precision floating point number uniformly distributed in the range [0,1). The range includes 0.0 but excludes 1.0.
 	
 -	*gsl.random.gaussian([seed], deviation)*
 	
-	*gsl.Random.gaussian([deviation])*
+	*gsl.Random.gaussian(deviation)*
 	
 	Returns a Gaussian random float with mean zero given a standart deviation as a float.
 	
