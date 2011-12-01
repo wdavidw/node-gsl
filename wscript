@@ -20,13 +20,13 @@ def configure(conf):
   conf.check_tool("compiler_cxx")
   conf.check_tool("compiler_cc")
   conf.check_tool("node_addon")
-  conf.env.append_value("LIBPATH_GSL", abspath("build/default/lib/"))
-  conf.env.append_value("CPPPATH_GSL", abspath("build/default/include/"))
+  conf.env.append_value("LIBPATH_GSL", abspath("build/Release/lib/"))
+  conf.env.append_value("CPPPATH_GSL", abspath("build/Release/include/"))
   conf.env.append_value("STATICLIB_GSL",["gsl"])
   # Build gsl
   srcpath = abspath("deps/gsl-1.14")
   temppath = abspath("build/gsl-1.14")
-  buildpath = abspath("build/default")
+  buildpath = abspath("build/Release")
   cmd = "cp -rp %s %s && cd \"%s\" && chmod u+x ./configure && ./configure --prefix=%s && make && make install"
   if os.system(cmd % (srcpath, temppath, temppath, buildpath)) != 0:
     conf.fatal("Configuring gsl failed.") 

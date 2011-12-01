@@ -1,5 +1,5 @@
 
-var gsl = require('./build/default/gsl');
+var gsl = require('./build/Release/gsl');
 
 module.exports = {
 	Random: gsl.Random,
