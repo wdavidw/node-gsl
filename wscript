@@ -8,7 +8,6 @@ def all(all):
   os.system('node-waf clean')
   os.system('node-waf configure')
   os.system('node-waf')
-  os.system('node test.js')
 
 def clean(cln):
   if exists('build'): rmtree('build')
