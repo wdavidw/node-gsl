@@ -1,16 +1,24 @@
-{ "name": "gsl"
-, "version": "0.0.7"
-, "description": "GNU Scientific Library for NodeJS."
-, "author": "David Worms <david@adaltas.com>"
-, "contributors":
-  [ { "name": "David Worms", "email": "david@adaltas.com" }
-  , { "name": "Alzennyr Gomes da Silva", "email": "alzennyr@gmail.com" }
-  , { "name": "Leeley Daio-Pires-Dos-Santos", "email": "leeley.daio-pires-dos-santos@edf.fr" }
-  ]
-, "engines": { "node": ">= 0.1.90" }
-, "keywords": ["library", "gsl", "mathematics", "random", "gaussian"]
-, "repository": 
-  { "type" : "git"
-  , "url" : "https://github.com/wdavidw/node-gsl.git"
-  }
+{
+    "name": "gsl",
+    "version": "0.0.7",
+    "description": "GNU Scientific Library for NodeJS.",
+    "author": "David Worms <david@adaltas.com>",
+    "contributors": [{
+        "name": "David Worms",
+        "email": "david@adaltas.com"
+    }, {
+        "name": "Alzennyr Gomes da Silva",
+        "email": "alzennyr@gmail.com"
+    }, {
+        "name": "Leeley Daio-Pires-Dos-Santos",
+        "email": "leeley.daio-pires-dos-santos@edf.fr"
+    }],
+    "engines": {
+        "node": ">= 0.1.90"
+    },
+    "keywords": ["library", "gsl", "mathematics", "random", "gaussian"],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/wdavidw/node-gsl.git"
+    }
 }
