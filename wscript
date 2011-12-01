@@ -28,7 +28,7 @@ def configure(conf):
   srcpath = abspath("deps/gsl-1.14")
   temppath = abspath("build/gsl-1.14")
   buildpath = abspath("build/default")
-  cmd = "cp -rp %s %s && cd \"%s\" && ./configure --prefix=%s && make && make install"
+  cmd = "cp -rp %s %s && cd \"%s\" && chmod u+x ./configure && ./configure --prefix=%s && make && make install"
   if os.system(cmd % (srcpath, temppath, temppath, buildpath)) != 0:
     conf.fatal("Configuring gsl failed.") 
 
