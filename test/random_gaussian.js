@@ -1,6 +1,6 @@
 
 var assert = require('assert'),
-	gsl = require('gsl');
+	gsl = require('..');
 
 module.exports = {
 	'Test gaussian - arguments': function(){
