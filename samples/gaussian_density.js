@@ -4,7 +4,7 @@ var gsl = require('gsl'),
 	path = require('path'),
 	spawn = require('child_process').spawn;
 
-	if(!path.existsSync(__dirname+'/gaussian_density')){
+	if(!fs.existsSync(__dirname+'/gaussian_density')){
 		fs.mkdirSync(__dirname+'/gaussian_density',0755);
 	}
 	
