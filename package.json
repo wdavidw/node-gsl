@@ -1,6 +1,6 @@
 {
     "name": "gsl",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "description": "GNU Scientific Library for NodeJS.",
     "author": "David Worms <david@adaltas.com>",
     "contributors": [{
