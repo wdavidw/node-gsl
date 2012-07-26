@@ -1,7 +1,8 @@
-build
-samples/gaussian_density
-samples/gaussian_density.r
-samples/poisson_density
-samples/poisson_density.r
+/build
+/samples/gaussian_density
+/samples/gaussian_density.r
+/samples/poisson_density
+/samples/poisson_density.r
+/node_modules
 .*
 !.gitignore
