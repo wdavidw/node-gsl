@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/wdavidw/node-gsl.png)](http://travis-ci.org/wdavidw/node-gsl)
 <pre>
            _ 
           | |
